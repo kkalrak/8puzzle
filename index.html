@@ -141,13 +141,58 @@
             font-size: 0.8rem;
             color: #888;
         }
+
+        /* 언어 전환 UI 스타일 */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            padding: 5px 10px;
+            background-color: #f0f2f5;
+            border: 1px solid #d1d5db;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .lang-btn.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #357abd;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                position: static;
+                margin-top: 10px;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- 언어 전환 UI -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="ko">한국어</button>
+        <button class="lang-btn" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
+    </div>
+
     <header>
-        <h1>3×3 숫자 퍼즐</h1>
-        <p>빈칸을 이용하여 숫자 1~8을 순서대로 나열하세요.</p>
+        <h1 id="title">3×3 숫자 퍼즐</h1>
+        <p id="description">빈칸을 이용하여 숫자 1~8을 순서대로 나열하세요.</p>
     </header>
 
     <main>
@@ -160,19 +205,133 @@
         <div id="message"></div>
 
         <div class="controls">
-            <button onclick="initGame()">게임 섞기 (다시 시작)</button>
+            <button id="shuffle-btn" onclick="initGame()">게임 섞기 (다시 시작)</button>
         </div>
     </main>
 
-    <footer>
+    <footer id="footer">
         &copy; 2024 8-Puzzle Game. All rights reserved.
     </footer>
 
     <script>
+        // 다국어 지원 변수
+        let currentLanguage = 'ko'; // 기본 언어는 한국어
+
+        // 번역 데이터
+        const translations = {
+            ko: {
+                title: "3×3 숫자 퍼즐",
+                description: "빈칸을 이용하여 숫자 1~8을 순서대로 나열하세요.",
+                shuffleBtn: "게임 섞기 (다시 시작)",
+                winMessage: "🎉 축하합니다! 성공했습니다!",
+                footer: "© 2024 8-Puzzle Game. All rights reserved.",
+                langBtnKo: "한국어",
+                langBtnEn: "English",
+                langBtnZh: "中文",
+                langBtnJa: "日本語"
+            },
+            en: {
+                title: "3×3 Number Puzzle",
+                description: "Arrange numbers 1-8 in order using the empty space.",
+                shuffleBtn: "Shuffle Game (Restart)",
+                winMessage: "🎉 Congratulations! You solved it!",
+                footer: "© 2024 8-Puzzle Game. All rights reserved.",
+                langBtnKo: "Korean",
+                langBtnEn: "English",
+                langBtnZh: "Chinese",
+                langBtnJa: "Japanese"
+            },
+            zh: {
+                title: "3×3 数字拼图",
+                description: "使用空白空间将数字1-8按顺序排列。",
+                shuffleBtn: "重新洗牌 (重新开始)",
+                winMessage: "🎉 恭喜！你成功了！",
+                footer: "© 2024 8-Puzzle Game. All rights reserved.",
+                langBtnKo: "韩语",
+                langBtnEn: "英语",
+                langBtnZh: "中文",
+                langBtnJa: "日语"
+            },
+            ja: {
+                title: "3×3 数字パズル",
+                description: "空きスペースを使って1〜8の数字を順番に並べます。",
+                shuffleBtn: "ゲームをシャッフル (再開)",
+                winMessage: "🎉 おめでとうございます！成功しました！",
+                footer: "© 2024 8-Puzzle Game. All rights reserved.",
+                langBtnKo: "韓国語",
+                langBtnEn: "英語",
+                langBtnZh: "中国語",
+                langBtnJa: "日本語"
+            }
+        };
+
         // 게임 상태 변수
         // 1~8은 숫자 타일, 0은 빈칸을 의미합니다.
         let board = [];
         const gridSize = 3;
+
+        // 언어 감지 및 설정 함수
+        function detectBrowserLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            const supportedLangs = ['ko', 'en', 'zh', 'ja'];
+
+            // 언어 코드 앞 2글자만 확인 (예: 'ko-KR' -> 'ko')
+            const langCode = browserLang.split('-')[0];
+
+            // 지원하는 언어인지 확인
+            if (supportedLangs.includes(langCode)) {
+                return langCode;
+            }
+
+            // 기본 언어로 한국어 반환
+            return 'ko';
+        }
+
+        // 언어 설정 함수
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+
+            currentLanguage = lang;
+
+            // HTML lang 속성 업데이트
+            document.documentElement.lang = lang;
+
+            // 텍스트 업데이트
+            updateTexts();
+
+            // 언어 버튼 활성화 상태 업데이트
+            updateLanguageButtons();
+
+            // 언어 설정 로컬 스토리지에 저장
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // 텍스트 업데이트 함수
+        function updateTexts() {
+            const t = translations[currentLanguage];
+
+            document.getElementById('title').textContent = t.title;
+            document.getElementById('description').textContent = t.description;
+            document.getElementById('shuffle-btn').textContent = t.shuffleBtn;
+            document.getElementById('footer').textContent = t.footer;
+
+            // 언어 버튼 텍스트 업데이트
+            document.querySelector('.lang-btn[data-lang="ko"]').textContent = t.langBtnKo;
+            document.querySelector('.lang-btn[data-lang="en"]').textContent = t.langBtnEn;
+            document.querySelector('.lang-btn[data-lang="zh"]').textContent = t.langBtnZh;
+            document.querySelector('.lang-btn[data-lang="ja"]').textContent = t.langBtnJa;
+        }
+
+        // 언어 버튼 상태 업데이트 함수
+        function updateLanguageButtons() {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === currentLanguage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
 
         // DOM 요소 참조
         const gridElement = document.getElementById('grid');
@@ -270,12 +429,33 @@
             });
 
             if (isWin) {
-                messageElement.textContent = '🎉 축하합니다! 성공했습니다!';
+                messageElement.textContent = translations[currentLanguage].winMessage;
             }
         }
 
-        // 페이지 로드 시 게임 시작
-        window.onload = initGame;
+        // 페이지 초기화 함수
+        function initializePage() {
+            // 1. 언어 설정 (로컬 스토리지 > 브라우저 감지 > 기본값)
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const browserLang = detectBrowserLanguage();
+            const initialLang = savedLang || browserLang || 'ko';
+
+            setLanguage(initialLang);
+
+            // 2. 언어 버튼 이벤트 리스너 설정
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                });
+            });
+
+            // 3. 게임 시작
+            initGame();
+        }
+
+        // 페이지 로드 시 초기화
+        window.onload = initializePage;
     </script>
 </body>
 </html>
