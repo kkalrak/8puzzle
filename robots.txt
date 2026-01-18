@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://kkalrak.github.io/8puzzle/sitemap.xml
+
+# Crawl-delay (optional)
+# Crawl-delay: 10
+
+# Preferred language (hreflang already implemented in HTML)
