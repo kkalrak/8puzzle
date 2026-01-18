@@ -282,7 +282,9 @@
                 langBtnKo: "한국어",
                 langBtnEn: "English",
                 langBtnZh: "中文",
-                langBtnJa: "日本語"
+                langBtnJa: "日本語",
+                metaTitle: "8 숫자 퍼즐 게임 - 온라인 무료 8-Puzzle",
+                metaDescription: "브라우저에서 바로 즐기는 8 슬라이딩 퍼즐 게임입니다. 숫자 1부터 8까지 순서대로 배열하는 두뇌 트레이닝 게임을 무료로 체험하세요."
             },
             en: {
                 title: "8 Number Puzzle",
@@ -293,7 +295,9 @@
                 langBtnKo: "Korean",
                 langBtnEn: "English",
                 langBtnZh: "Chinese",
-                langBtnJa: "Japanese"
+                langBtnJa: "Japanese",
+                metaTitle: "8 Number Puzzle Game - Online Free 8-Puzzle",
+                metaDescription: "Play the classic 8 sliding puzzle game directly in your browser. Arrange numbers 1 through 8 in order for brain training. Free to play."
             },
             zh: {
                 title: "8 数字拼图",
@@ -304,7 +308,9 @@
                 langBtnKo: "韩语",
                 langBtnEn: "英语",
                 langBtnZh: "中文",
-                langBtnJa: "日语"
+                langBtnJa: "日语",
+                metaTitle: "8 数字拼图游戏 - 在线免费 8-Puzzle",
+                metaDescription: "直接在浏览器中玩经典8滑块拼图游戏。将数字1到8按顺序排列进行脑力训练。免费游玩。"
             },
             ja: {
                 title: "8 数字パズル",
@@ -315,7 +321,9 @@
                 langBtnKo: "韓国語",
                 langBtnEn: "英語",
                 langBtnZh: "中国語",
-                langBtnJa: "日本語"
+                langBtnJa: "日本語",
+                metaTitle: "8 数字パズルゲーム - オンライン無料 8-Puzzle",
+                metaDescription: "ブラウザで直接プレイできるクラシック8スライドパズルゲーム。1から8までの数字を順番に並べて脳トレ。無料で遊べます。"
             }
         };
 
@@ -364,6 +372,14 @@
         function updateTexts() {
             const t = translations[currentLanguage];
 
+            // 언어별 locale 매핑
+            const localeMap = {
+                'ko': 'ko_KR',
+                'en': 'en_US',
+                'zh': 'zh_CN',
+                'ja': 'ja_JP'
+            };
+
             document.getElementById('title').textContent = t.title;
             document.getElementById('description').textContent = t.description;
             document.getElementById('shuffle-btn').textContent = t.shuffleBtn;
@@ -374,6 +390,31 @@
             document.querySelector('.lang-btn[data-lang="en"]').textContent = t.langBtnEn;
             document.querySelector('.lang-btn[data-lang="zh"]').textContent = t.langBtnZh;
             document.querySelector('.lang-btn[data-lang="ja"]').textContent = t.langBtnJa;
+
+            // 메타 태그 업데이트
+            document.title = t.metaTitle;
+
+            // 메타 description 업데이트
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', t.metaDescription);
+
+            // Open Graph 태그 업데이트
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogTitle) ogTitle.setAttribute('content', t.metaTitle);
+            if (ogDesc) ogDesc.setAttribute('content', t.metaDescription);
+
+            // Open Graph locale 업데이트
+            const ogLocale = document.querySelector('meta[property="og:locale"]');
+            if (ogLocale && localeMap[currentLanguage]) {
+                ogLocale.setAttribute('content', localeMap[currentLanguage]);
+            }
+
+            // Twitter Card 태그 업데이트
+            const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+            const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+            if (twitterTitle) twitterTitle.setAttribute('content', t.metaTitle);
+            if (twitterDesc) twitterDesc.setAttribute('content', t.metaDescription);
         }
 
         // 언어 버튼 상태 업데이트 함수
