@@ -3,13 +3,57 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kkalrak.github.io/8puzzle/</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://kkalrak.github.io/8puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kkalrak.github.io/8puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://kkalrak.github.io/8puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://kkalrak.github.io/8puzzle/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://kkalrak.github.io/8puzzle/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kkalrak.github.io/8puzzle/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://kkalrak.github.io/8puzzle/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kkalrak.github.io/8puzzle/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kkalrak.github.io/8puzzle/"/>
+  </url>
+  <url>
+    <loc>https://kkalrak.github.io/8puzzle/?lang=ko</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://kkalrak.github.io/8puzzle/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kkalrak.github.io/8puzzle/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://kkalrak.github.io/8puzzle/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kkalrak.github.io/8puzzle/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kkalrak.github.io/8puzzle/"/>
+  </url>
+  <url>
+    <loc>https://kkalrak.github.io/8puzzle/?lang=en</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://kkalrak.github.io/8puzzle/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kkalrak.github.io/8puzzle/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://kkalrak.github.io/8puzzle/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kkalrak.github.io/8puzzle/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kkalrak.github.io/8puzzle/"/>
+  </url>
+  <url>
+    <loc>https://kkalrak.github.io/8puzzle/?lang=zh</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://kkalrak.github.io/8puzzle/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kkalrak.github.io/8puzzle/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://kkalrak.github.io/8puzzle/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kkalrak.github.io/8puzzle/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kkalrak.github.io/8puzzle/"/>
+  </url>
+  <url>
+    <loc>https://kkalrak.github.io/8puzzle/?lang=ja</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://kkalrak.github.io/8puzzle/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kkalrak.github.io/8puzzle/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://kkalrak.github.io/8puzzle/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kkalrak.github.io/8puzzle/?lang=ja"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kkalrak.github.io/8puzzle/"/>
   </url>
 </urlset>
